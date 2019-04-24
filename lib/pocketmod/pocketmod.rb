@@ -22,7 +22,11 @@ module Pocketmod
         @panels.each do |panel|
           pdf.rotate rotate_panel?(panel) ? 180 : 0, origin: panel_center(panel) do
             pdf.bounding_box panel_position(panel), width: PANEL_WIDTH, height: PANEL_HEIGHT do
-              pdf.text panel.text
+              if panel.has_block?
+                panel.render pdf
+              else
+                pdf.text panel.text
+              end
             end
           end
         end

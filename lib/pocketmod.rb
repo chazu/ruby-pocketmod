@@ -8,10 +8,15 @@ end
 
 a = Pocketmod::Pocketmod.new
 
-a.add_panel Pocketmod::Panel.new "Some text1"
-a.add_panel Pocketmod::Panel.new "More text2"
-a.add_panel Pocketmod::Panel.new "Some text3"
-a.add_panel Pocketmod::Panel.new "More text4"
-a.add_panel Pocketmod::Panel.new "Some text5"
-a.add_panel Pocketmod::Panel.new "More text6"
+#a.add_panel Pocketmod::Panel.new "foobar"
+
+b = Pocketmod::Panel.new "lol"
+c = Pocketmod::Panel.new "wut"
+c.draw do |ctx|
+  ctx.text "DIS IS DA REAL THING YO WIGGITY WACK IM HIP AND WITH IT"
+end
+
+a.add_panel b
+a.add_panel c
+
 a.generate

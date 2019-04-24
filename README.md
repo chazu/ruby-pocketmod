@@ -1,8 +1,10 @@
 # Pocketmod
 
 ## TODO
-Expose drawing context for panel as part of gem API
+Make string arg to panel constructor optional
 Add a couple pixels of margin to each panel
+Work out a class-based API for creating panels
+Add registration marks to each panel
 
 ## DONE
 Set the generated pdf to landscape mode
@@ -15,3 +17,4 @@ Add panels to the pocketmod
 Pocketmod should calculate position of each panel
 Pocketmod should draw each panel to the pdf
 Pocketmod should calculate rotation of each panel
+Expose drawing context for panel as part of gem API
