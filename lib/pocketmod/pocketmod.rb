@@ -20,10 +20,10 @@ module Pocketmod
     def generate
       Prawn::Document.generate "pocketmod.pdf", page_layout: :landscape do |pdf|
         @panels.each do |panel|
-          puts panel_position(panel)
-          puts "--"
-          pdf.bounding_box panel_position(panel), width: PANEL_WIDTH, height: PANEL_HEIGHT do
-            pdf.text panel.text
+          pdf.rotate rotate_panel?(panel) ? 180 : 0, origin: panel_center(panel) do
+            pdf.bounding_box panel_position(panel), width: PANEL_WIDTH, height: PANEL_HEIGHT do
+              pdf.text panel.text
+            end
           end
         end
       end
@@ -33,7 +33,7 @@ module Pocketmod
 
     def panel_x panel
       index = @panels.find_index(panel)
-      ((index % 4) + 1) * PANEL_WIDTH
+      ((index % 4)) * PANEL_WIDTH
     end
 
     def panel_y panel
@@ -44,6 +44,15 @@ module Pocketmod
     def panel_position panel
       [panel_x(panel), panel_y(panel)]
     end
+
+    def rotate_panel? panel
+      index = @panels.find_index(panel)
+      index <= 3 ? false : true
+    end
+
+    def panel_center panel
+      [panel_x(panel) + PANEL_WIDTH / 2,
+       panel_y(panel) + PANEL_HEIGHT / 2]
+    end
   end
 end
-
