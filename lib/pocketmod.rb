@@ -1,3 +1,4 @@
+require "pocketmod/pocketmod"
 require "pocketmod/version"
 
 module Pocketmod
