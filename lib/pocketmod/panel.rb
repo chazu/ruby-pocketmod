@@ -1,8 +1,8 @@
 module Pocketmod
   class Panel
 
-    def initialize text
-      @text = text
+    def initialize args = {}
+      @text = args[:text] ? args[:text] : ""
     end
 
     def text

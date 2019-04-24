@@ -10,8 +10,9 @@ a = Pocketmod::Pocketmod.new
 
 #a.add_panel Pocketmod::Panel.new "foobar"
 
-b = Pocketmod::Panel.new "lol"
-c = Pocketmod::Panel.new "wut"
+b = Pocketmod::Panel.new text: "lol"
+c = Pocketmod::Panel.new
+
 c.draw do |ctx|
   ctx.text "DIS IS DA REAL THING YO WIGGITY WACK IM HIP AND WITH IT"
 end

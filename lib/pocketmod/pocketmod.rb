@@ -6,8 +6,13 @@ module Pocketmod
     POINTS_H = 792
     POINTS_V = 612
 
-    PANEL_HEIGHT = POINTS_V / 2
-    PANEL_WIDTH  = POINTS_H / 4
+    PANEL_MARGIN = 2
+
+    PANEL_HEIGHT = (POINTS_V / 2) - (PANEL_MARGIN * 2)
+    PANEL_WIDTH  = (POINTS_H / 4) - (PANEL_MARGIN * 2)
+    
+    PANEL_INNER_HEIGHT = (POINTS_V / 2) - (PANEL_MARGIN * 2)
+    PANEL_INNER_WIDTH  = (POINTS_H / 4) - (PANEL_MARGIN * 2)
 
     def initialize
       @panels = []
@@ -18,7 +23,7 @@ module Pocketmod
     end
 
     def generate
-      Prawn::Document.generate "pocketmod.pdf", page_layout: :landscape do |pdf|
+      Prawn::Document.generate "pocketmod.pdf", page_layout: :landscape, margin: 1 do |pdf|
         @panels.each do |panel|
           pdf.rotate rotate_panel?(panel) ? 180 : 0, origin: panel_center(panel) do
             pdf.bounding_box panel_position(panel), width: PANEL_WIDTH, height: PANEL_HEIGHT do

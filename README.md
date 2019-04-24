@@ -1,12 +1,16 @@
 # Pocketmod
 
+A gem for generating pocketmod-style PDFs in ruby using prawn.
+
+Heavily WIP.
+
 ## TODO
-Make string arg to panel constructor optional
-Add a couple pixels of margin to each panel
-Work out a class-based API for creating panels
 Add registration marks to each panel
+Work out a class-based API for creating panels
+Add a couple pixels of margin to each panel
 
 ## DONE
+Make string arg to panel constructor optional
 Set the generated pdf to landscape mode
 Create a Pocketmod class to represent the complete document
 Pocketmod class should be able to '#generate' to create the file
