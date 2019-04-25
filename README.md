@@ -5,8 +5,10 @@ A gem for generating pocketmod-style PDFs in ruby using prawn.
 Heavily WIP.
 
 ## TODO
-- Add registration marks to each panel
 - Work out a class-based API for creating panels
+- Add Parser class
+- Parser can split pdf into 8 panels
+- Parser can rotate panels upright if need be
 - Figure out why panel_x and panel_y needed to be reversed in Pocketmod#generate code
 - Un#%!@ the #panel_center code - write a damn unit test
 
