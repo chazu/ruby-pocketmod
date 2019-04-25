@@ -3,13 +3,13 @@ require "prawn"
 module Pocketmod
   class Pocketmod
 
-    POINTS_H = 792
-    POINTS_V = 612
+    PAGE_WIDTH = 792
+    PAGE_HEIGHT = 612
 
-    PANEL_MARGIN = 10
+    GUTTER = 10
 
-    PANEL_HEIGHT = (POINTS_V / 2) - (PANEL_MARGIN * 2)
-    PANEL_WIDTH  = (POINTS_H / 4) - (PANEL_MARGIN * 2)
+    PANEL_HEIGHT = (PAGE_HEIGHT - GUTTER) / 2
+    PANEL_WIDTH  = (PAGE_WIDTH - 3 * GUTTER) / 4
 
     def initialize
       @panels = []
@@ -21,39 +21,33 @@ module Pocketmod
 
     def generate
       Prawn::Document.generate "pocketmod.pdf", page_layout: :landscape, margin: 0 do |pdf|
+        pdf.define_grid columns: 4, rows: 2, gutter: 10
+
         @panels.each do |panel|
           puts panel_position(panel)
           puts "==="
-          pdf.rotate rotate_panel?(panel) ? 180 : 0, origin: panel_center(panel) do
-            pdf.bounding_box panel_position(panel),
-                             width:  PANEL_WIDTH,
-                             height: PANEL_HEIGHT,
-                             margin: PANEL_MARGIN  do
-
-              # Draw a border around the panel
+          pdf.grid(panel_y(panel), panel_x(panel)).bounding_box do
+            pdf.rotate rotate_panel?(panel) ? 180 : 0, origin: panel_center(panel) do
               pdf.stroke_bounds
-
               if panel.has_block?
                 panel.render pdf
               else
                 pdf.text panel.text
+                #pdf.text "#{panel_x(panel)}, #{panel_y(panel)}"
               end
             end
           end
         end
       end
     end
-
     private
 
     def panel_x panel
-      index = @panels.find_index(panel)
-      (((index % 4)) * PANEL_WIDTH) + PANEL_MARGIN
+      @panels.find_index(panel) % 4
     end
 
     def panel_y panel
-      index = @panels.find_index(panel)
-      index <= 3 ? (POINTS_V / 2 + PANEL_MARGIN) : (0 + PANEL_MARGIN)
+      @panels.find_index(panel) <= 3 ? 0 : 1
     end
 
     def panel_position panel
@@ -62,11 +56,11 @@ module Pocketmod
 
     def rotate_panel? panel
       index = @panels.find_index(panel)
-      index <= 3 ? false : true
+      index <= 3 ? true : false
     end
 
     def panel_center panel
-      [panel_x(panel) + PANEL_WIDTH / 2,
+      [(panel_y(panel) + 1) * PANEL_WIDTH / 2,
        panel_y(panel) + PANEL_HEIGHT / 2]
     end
   end

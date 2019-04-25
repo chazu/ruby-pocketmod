@@ -7,7 +7,8 @@ Heavily WIP.
 ## TODO
 - Add registration marks to each panel
 - Work out a class-based API for creating panels
-- Add a couple pixels of margin to each panel
+- Figure out why panel_x and panel_y needed to be reversed in Pocketmod#generate code
+- Un#%!@ the #panel_center code - write a damn unit test
 
 ## DONE
 - Make string arg to panel constructor optional
@@ -22,3 +23,5 @@ Heavily WIP.
 - Pocketmod should draw each panel to the pdf
 - Pocketmod should calculate rotation of each panel
 - Expose drawing context for panel as part of gem API
+- (For now) Add a solid border around each panel
+- Add margins for each panel
