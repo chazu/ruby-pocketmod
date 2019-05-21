@@ -24,11 +24,11 @@ module Pocketmod
         pdf.define_grid columns: 4, rows: 2, gutter: 10
 
         @panels.each do |panel|
-          puts panel_position(panel)
-          puts "==="
           pdf.grid(panel_y(panel), panel_x(panel)).bounding_box do
             pdf.rotate rotate_panel?(panel) ? 180 : 0, origin: panel_center(panel) do
               pdf.stroke_bounds
+              puts "yo yo yo"
+              puts panel.has_block?
               if panel.has_block?
                 panel.render pdf
               else

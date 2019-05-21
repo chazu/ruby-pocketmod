@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
     spec.metadata["changelog_uri"] = "TODO"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
+          "public gem pushes."
   end
 
   # Specify which files should be added to the gem when it is released.
@@ -39,5 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "pry"
+  spec.add_development_dependency "pry-byebug"
   spec.add_dependency "prawn", "~> 2.2"
 end

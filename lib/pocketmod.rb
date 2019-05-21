@@ -11,12 +11,18 @@ end
 a = Pocketmod::Pocketmod.new
 
 a.add_panel Pocketmod::Panel.new text: "normal1"
-a.add_panel Pocketmod::Panel.new text: "normal2"
-a.add_panel Pocketmod::Panel.new text: "normal3"
-a.add_panel Pocketmod::Panel.new text: "normal4"
-
-a.add_panel Pocketmod::Panel.new text: "flipped1"
+a.add_panel Pocketmod::Panel.new text: "normal1"
+a.add_panel Pocketmod::Panel.new text: "normal1"
+a.add_panel Pocketmod::Panel.new text: "normal1"
 a.add_panel Pocketmod::Panel.new text: "flipped2"
-a.add_panel Pocketmod::Panel.new text: "flipped3"
-a.add_panel Pocketmod::Panel.new text: "flipped4"
+a.add_panel Pocketmod::Panel.new text: "flipped2"
+
+panel = Pocketmod::Panel.new
+
+panel.draw do |ctx|
+  ctx.text "Yo whaddup whaddup"
+end
+
+a.add_panel panel
+
 a.generate
